@@ -1,0 +1,39 @@
+.control {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.control label {
+  color: white;
+  font-family: 'tangerine';
+  font-size: 40px;
+  font-weight: 100;
+  display: flex;
+  justify-content: center;
+}
+.control select {
+  width: 21%;
+  margin-left: 10px ;
+  font: inherit;
+  padding: 0.35rem 0.35rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.control select:focus {
+  outline: none;
+  border-color: #4f005f;
+  background: #f6dbfc;
+}
+
+.control.invalid select {
+  border-color: red;
+  background: #fbdada;
+}
+
+.control form {
+  display: flex;
+  justify-content: flex-end;
+}

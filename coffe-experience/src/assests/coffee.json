@@ -1,0 +1,126 @@
+{
+  "coffee_types": [
+    {
+      "ïd": "c1",
+      "ingredients": [ "cafe", "30ml agua" ],
+      "title": "Espresso",
+      "description": "Se inventó en Italia durante el siglo XIX, un shot de espresso se prepara mediante el traspaso a presión de una pequeña cantidad de agua a punto de hervir (entre 86 y 95 ºC) a través del café molido finamente. La espuma que se genera de manera natural en la parte superior es la medida del espresso perfecto.",
+      "characteristics": ["fuerte"],
+      "image": "../assests/coffeeImages/espresso.png"
+    },
+    {
+      "ïd": "c2",
+      "ingredients": [ "90ml agua caliente", "60ml de Espresso"],
+      "title": "Americano",
+      "description": "También conocido simplemente como americano, en este estilo de café se agrega agua caliente para variar la intensidad del espresso doble. Algunas personas prefieren prepararlo con un espresso simple (30 ml). ",
+      "characteristics": [],
+      "image": "../assests/coffeeImages/americano.png"
+    },
+    {
+      "ïd": "c3",
+      "ingredients": [ "60ml de Espresso", "60ml de leche al vapor", "60ml leche espumada"],
+      "title": "Cappuccino",
+      "description": "Típica bebida italiana preparada con un shot de espresso, leche caliente y espuma de leche al vapor. En Italia, beber uno después de las 10 a. m. es algo que no se recomienda para nada, sin embargo, en el resto de Europa es muy popular a cualquier hora del día.",
+      "characteristics": [ ],
+      "image": "../assests/coffeeImages/capuccino.png"
+      
+    },
+    {
+      "ïd": "c4",
+      "ingredients": [ "60ml Espresso", "300ml de leche al vapor", "20ml leche espumada"],
+      "title": "Latte",
+      "description": "También conocida en Europa como “cafe au lait”, esta bebida a menudo solo recibe el nombre de “latte”; en inglés, a veces se escribe como “latté” o “lattè”, lo que literalmente significa “café con leche”. Y precisamente eso es: un espresso con mucha leche que fácilmente puede preparar con una cafetera de latte. Pero, tenga cuidado si pide un “latte” en Italia, ya que solo recibirá un vaso de leche.",
+      "characteristics": [],
+      "image": "../assests/coffeeImages/latte.png"
+      
+    },
+    {
+      "ïd": "c5",
+      "ingredients": [ "30ml Espresso", "30ml leche espumada", "30ml leche al vapor", "30ml chocolate caliente"],
+      "title": "Mocha",
+      "description": "Se trata de una variante del café con leche en el que además de leche y café se emplea obligatoriamente chocolate o cacao en forma de sirope o polvo.",
+      "characteristics": [],
+      "image": "../assests/coffeeImages/mocha.png"
+      
+    },
+    {
+      "ïd": "c6",
+      "ingredients": ["30ml Espresso", "30ml leche espumada"],
+      "title": "Macchiato",
+      "description": "Macchiato significa 'manchado' y es un espresso con una buena dosis de espuma de leche en la parte superior. Aunque puede parecerse a un capuccino pequeño, es más fuerte y más aromático.",
+      "characteristics": [],
+      "image": "../assests/coffeeImages/macchiato.png"
+    },
+    {
+      "ïd": "c7",
+      "ingredients": [ "60ml Espresso", "10ml brandy"],
+      "title": "Carajillo",
+      "description": "El carajillo es un café preparado como un espresso al cual se le añade además de la infusión una cierta cantidad de alguna bebida espirituosa, siendo lo más general el brandy, el orujo o el whisky. Para ello generalmente primero se hecha el licor previamente calentado, al cual se le añadirá el café y posteriormente se le pueden agregar otros elementos como azúcar. ",
+      "characteristics": [],
+      "image": "../assests/coffeeImages/carajillo.png"
+    },
+    {
+      "ïd": "c8",
+      "ingredients": [ "90ml Espresso"],
+      "title": "Lungo",
+      "description": "Lungo significa 'largo' en italiano. Se prepara con una dosis triple de espresso y el doble de agua, lo que produce un café extendido. Los franceses lo llaman 'café allongé'",
+      "characteristics": [],
+      "image": "../assests/coffeeImages/lungo.png"
+      
+    },
+    {
+      "ïd": "c9",
+      "ingredients": ["30ml Espresso", "hielo molido", "crema de leche" ],
+      "title": "Frappé",
+      "description": "Una de las pocas variantes cuya conceptualización es directamente como café frío, el frappé se elabora con café instantáneo molido, hielo y crema de leche o nata.",
+      "characteristics": ["frio"],
+      "image": "../assests/coffeeImages/frappe.png"
+      
+    },
+    {
+      "ïd": "c10",
+      "ingredients": ["60ml Espresso", "10ml whisky", "crema de leche"],
+      "title": "Irlandes",
+      "description": "Un tipo de espresso doble en el cual se le añade Whisky y una capa consistente de nata montada o crema. Suele servirse en copa de cóctel.",
+      "characteristics": [],
+      "image": "../assests/coffeeImages/irlandes.png"
+      
+    },
+    {
+      "ïd": "c11",
+      "ingredients": [ "cafe en frio", "hielo"],
+      "title": "Cold Brew",
+      "description": "Se traduce literalmente por infusión en frío de café, o reposo frío de café, y es una de las mejores formas para consumir esta bebida",
+      "characteristics": [],
+      "image": "../assests/coffeeImages/cold brew.png"
+      
+    },
+    {
+      "ïd": "c12",
+      "ingredients": [ "22ml Espresso"],
+      "title": "Ristretto",
+      "description": "Esta variante del espresso se caracteriza por tener la misma cantidad de café que el anterior pero emplear para ello una proporción menor de agua.",
+      "characteristics": [],
+      "image": "../assests/coffeeImages/ristretto.png"
+      
+    },
+    {
+      "ïd": "c13",
+      "ingredients": [ "60ml Espresso", "30ml crema de leche"],
+      "title": "Vienes",
+      "description": "Un tipo de café que puede ser espresso simple o doble el cual se acompaña en vez de leche por crema o nata, en una proporción inferior a la del propio café.",
+      "characteristics": [],
+      "image": "../assests/coffeeImages/vienes.png"
+      
+    },
+    {
+      "ïd": "c14",
+      "ingredients": [ "30ml Espresso", "60ml leche al vapor"],
+      "title": "Flat White",
+      "description": "Esta bebida nació en Nueva Zelanda en la década de 1970 como una alternativa al capuccino espumoso. La diferencia principal es que no tiene espuma de leche.",
+      "characteristics": [],
+      "image": "../assests/coffeeImages/flat white.png"
+      
+    }
+  ]
+}

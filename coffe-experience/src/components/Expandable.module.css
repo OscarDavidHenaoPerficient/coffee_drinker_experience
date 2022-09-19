@@ -1,0 +1,35 @@
+.expandable img {
+  width: 100%;
+  border-radius: 12px 
+}
+
+.expandable h1 {
+  font-family: 'tangerine';
+  font-size: 50px;
+  margin: 10px 20px;
+  
+}
+
+.expandable button {
+  font:italic;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  border-radius: 500px;
+  background-color: transparent;
+  color: brown;
+  
+}
+
+.expandable button:hover {
+  color: white;
+  background-color: rgb(91, 58, 7);
+}
+.expandableTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.expandableTitle button {
+  border: none
+}
