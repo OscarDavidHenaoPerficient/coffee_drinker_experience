@@ -1,7 +1,7 @@
 import React, {useState, useContext} from "react";
 import classes from './Expandable.module.css';
-import CoffeeContext from "../store/coffee-context";
-import { getImage } from "../assests/coffeeImages/imagesEnums";
+import CoffeeContext from "../../store/coffee-context";
+import { getImage } from "../../assests/coffeeImages/imagesEnums";
 
 const Expandable = () => {
   const [openDescription, setOpenDescription] = useState(false);
@@ -22,7 +22,7 @@ const Expandable = () => {
         <h1>{cxt.coffeeSelectedData.title}</h1>
         {cxt.coffeeSelected ? openDescription ? <button onClick={closeHandler}>Close</button> : <button onClick={openHandler}>Details</button> : null}
       </div>
-      {openDescription &&  <p>{cxt.coffeeSelectedData.description}</p>}
+      {openDescription &&  <p data-testid='description'>{cxt.coffeeSelectedData.description}</p>}
     </div>
   )
 };

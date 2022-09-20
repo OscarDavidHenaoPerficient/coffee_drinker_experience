@@ -1,6 +1,7 @@
 .expandable img {
   width: 100%;
-  border-radius: 12px 
+  border-radius: 12px;
+  height: 90%;
 }
 
 .expandable h1 {

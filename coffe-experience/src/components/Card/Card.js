@@ -5,6 +5,7 @@ const Card = (props) => {
   return (
     <section
       className={`${classes.card} ${props.className ? props.className : ''}`}
+      data-testid='card'
     >
       {props.children}
     </section>

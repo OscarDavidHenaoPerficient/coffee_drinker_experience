@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import coffeBeans from '../../assests/coffeeBeans.jpeg';
+import coffeBeans from '../../assests/coffeeImages/coffeeBeans.jpeg';
 import classes from './Header.module.css';
 
 const Header = () => {
@@ -9,7 +9,7 @@ const Header = () => {
         <h1>Coffee Styles</h1>
       </header>
       <div className={classes['main-image']}>
-        <img src={coffeBeans} alt="coffee Beans" />
+        <img data-testid='coffeeBeans' src={coffeBeans} alt="coffee Beans" />
       </div>
     </Fragment>
   );
