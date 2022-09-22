@@ -19,28 +19,30 @@ const CoffeeContext = React.createContext({
 
 export const CoffeeContextProvider = (props) => {
   const [coffeeSelected, setCoffeeSelected] = useState('');
-  const [coffeeData, setCoffeeData] = useState([]);
+  const [coffeeData, setCoffeeData] = useState(undefined);
   const [coffeeSelectedData, setCoffeeSelectedData] = useState(initialState);
 
   const requestHandler = useCallback(async () => {
-    try {
-      const response = await fetch('http://localhost:3000/coffee_types');
-      if (!response.ok) {
-        throw new Error('Something went wrong!');
+    if (!coffeeData) {
+      try {
+        const response = await fetch('http://localhost:3000/coffee_types');
+        if (!response.ok) {
+          throw new Error('Something went wrong!');
+        }
+        const data = await response.json();
+        setCoffeeData(data)
+      } catch (error) {
+        console.log(error);
       }
-      const data = await response.json();
-      setCoffeeData(data)
-    } catch (error) {
-      console.log(error);
     }
-  }, []);
+  }, [coffeeData]);
 
   useEffect(() => {
     requestHandler();
   }, [requestHandler]);
 
   const coffeeSelectedHandler = (value) => {
-    requestHandler();
+    // requestHandler();
     setCoffeeSelected(value);
     const dataSet = coffeeData.find((element) => element.title === value )
     console.log(dataSet);
@@ -56,7 +58,7 @@ export const CoffeeContextProvider = (props) => {
       coffeeSelected: coffeeSelected,
       allCoffeeData: coffeeData,
       coffeeSelectedData: coffeeSelectedData,
-      coffeeSelectionHandler: coffeeSelectedHandler,
+      coffeeSelectionHandler: coffeeSelectedHandler
     }}>
       {props.children}
     </CoffeeContext.Provider>

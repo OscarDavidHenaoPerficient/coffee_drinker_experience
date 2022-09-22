@@ -34,3 +34,28 @@
 .expandableTitle button {
   border: none
 }
+
+.description-enter {
+  transform: translateY(-100%);
+}
+.description-enter-active {
+  transform: translateY(0%);
+}
+
+.description-exit {
+  transform: translateY(0%);
+}
+.description-exit-active {
+  transform: translateY(100%);
+}
+
+.description-enter-active,
+.description-exit-active {
+  transition: transform 200ms ;
+}
+/* .description-exit-active {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(-48px);
+} */
+
+

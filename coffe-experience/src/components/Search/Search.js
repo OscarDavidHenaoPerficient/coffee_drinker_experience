@@ -24,6 +24,7 @@ const Search = () => {
 
   const onClickhandler = (event) => {
     cxt.coffeeSelectionHandler(event.target.value);
+    console.log(cxt.coffeeSelectedData);
   }
 
   return (

@@ -122,5 +122,22 @@
       "image": "../assests/coffeeImages/flat white.png"
       
     }
+  ],
+  "validUsers": [
+    {
+      "id": "1",
+      "username": "dave12@gmail.com",
+      "password": "papaQuemada*/"
+    },
+    {
+      "id": "2",
+      "username": "moby_pepe85@gmail.com",
+      "password": "Saliba8596"
+    },
+    {
+      "id": "2",
+      "username": "aa@aa.com",
+      "password": "000000*/"
+    }
   ]
 }

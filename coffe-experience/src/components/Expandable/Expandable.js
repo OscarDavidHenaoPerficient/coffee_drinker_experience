@@ -1,7 +1,9 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, Fragment} from "react";
 import classes from './Expandable.module.css';
 import CoffeeContext from "../../store/coffee-context";
+import Images from './Images';
 import { getImage } from "../../assests/coffeeImages/imagesEnums";
+import {motion} from 'framer-motion';
 
 const Expandable = () => {
   const [openDescription, setOpenDescription] = useState(false);
@@ -9,21 +11,32 @@ const Expandable = () => {
 
   const closeHandler = () => {
     setOpenDescription(false)
+    // cxt.openDescriptionHandler(false)
   };
   
   const openHandler = () => {
     setOpenDescription(true)
+    // cxt.openDescriptionHandler(true)
+    
   };
 
   return (
-    <div className={classes.expandable}>
-      <img src={getImage(cxt.coffeeSelected)} alt='coffee delight'></img>
-      <div className={classes.expandableTitle}>
-        <h1>{cxt.coffeeSelectedData.title}</h1>
-        {cxt.coffeeSelected ? openDescription ? <button onClick={closeHandler}>Close</button> : <button onClick={openHandler}>Details</button> : null}
+    <Fragment>
+      <div className={classes.expandable}>
+        <Images source={getImage(cxt.coffeeSelected)} alt='coffeeDelight' />
+        <div className={classes.expandableTitle}>
+          <h1>{cxt.coffeeSelectedData.title}</h1>
+          {cxt.coffeeSelected ? openDescription ? <button onClick={closeHandler}>Close</button> : <button onClick={openHandler}>Details</button> : null}
+        </div>
       </div>
-      {openDescription &&  <p data-testid='description'>{cxt.coffeeSelectedData.description}</p>}
-    </div>
+      <motion.div layout transition={{layout: {duration: 1}}} className={classes.drawer} >
+      {openDescription &&  
+        (<motion.div className={classes.expandPara} layout transition={{layout: {duration: 1}}}> 
+          <p data-testid='description'>{cxt.coffeeSelectedData.description}</p>
+        </motion.div>
+        )}
+      </motion.div>
+    </Fragment>
   )
 };
 
