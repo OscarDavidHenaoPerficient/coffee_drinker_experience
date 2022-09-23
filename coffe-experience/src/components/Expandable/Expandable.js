@@ -23,16 +23,16 @@ const Expandable = () => {
   return (
     <Fragment>
       <div className={classes.expandable}>
-        <Images source={getImage(cxt.coffeeSelected)} alt='coffeeDelight' />
+        <Images source={getImage(cxt.coffeeState.coffeeSelected)} alt='coffeeDelight' />
         <div className={classes.expandableTitle}>
-          <h1>{cxt.coffeeSelectedData.title}</h1>
-          {cxt.coffeeSelected ? openDescription ? <button onClick={closeHandler}>Close</button> : <button onClick={openHandler}>Details</button> : null}
+          <h1>{cxt.coffeeState.coffeeSelectedData.title}</h1>
+          {cxt.coffeeState.coffeeSelected ? openDescription ? <button onClick={closeHandler}>Close</button> : <button onClick={openHandler}>Details</button> : null}
         </div>
       </div>
       <motion.div layout transition={{layout: {duration: 1}}} className={classes.drawer} >
       {openDescription &&  
         (<motion.div className={classes.expandPara} layout transition={{layout: {duration: 1}}}> 
-          <p data-testid='description'>{cxt.coffeeSelectedData.description}</p>
+          <p data-testid='description'>{cxt.coffeeState.coffeeSelectedData.description}</p>
         </motion.div>
         )}
       </motion.div>

@@ -8,15 +8,15 @@ import React, {useContext} from "react";
 // import ExpandableParagraph from "../Expandable/ExpandableParagraph";
 
 const CoffeeCards = () => {
-  const {coffeeSelected} = useContext(CoffeeContext);
+  const coffeeCxt = useContext(CoffeeContext);
   return (
     <div className='cardContainer'>
       <SwitchTransition mode="out-in">
         <CSSTransition
-          key={coffeeSelected}
-          timeout={500}
+          key={coffeeCxt.coffeeState.coffeeSelected}
+          timeout={800}
           classNames='card_animation'
-            >
+        >
           <Card>
             <Expandable/>
           </Card>

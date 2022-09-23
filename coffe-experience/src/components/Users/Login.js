@@ -1,40 +1,64 @@
 import React, { useState, useEffect, useReducer, useContext } from 'react';
-// import PropTypes from 'prop-types';
 import Card from '../Card/Card';
 import classes from './Login.module.css';
 import Button from './Button';
 import Input from './Input';
-// import CoffeeContext from '../../store/coffee-context';
 import AuthContext from '../../store/auth-context';
+import CoffeeContext from '../../store/coffee-context';
 
-const emailReducer = (state, action) => {
-  if (action.type === 'USER_INPUT') {
-    return {value: action.value, isValid: action.value.includes('@') }
+const stateReducer = (state, action) => {
+  if (Object.keys(action).find(word => word === 'email')) {
+    switch (action.email.type) {
+      case 'USER_INPUT':
+        return { 
+          email: {value:  action.email.value, isValid: action.email.value.includes('@')},
+          password: {value: state.password.value, isValid: state.password.isValid}
+        }
+      case 'INPUT_BLUR':
+        return { 
+          email: {value: state.email.value, isValid: state.email.value.includes('@')},
+          password: {value: state.password.value, isValid: state.password.isValid}
+        }
+      default:
+        return {
+          email: {value: '', isValid: false},
+          password: {value: state.password.value, isValid: state.password.isValid}
+        }
+    }
+  } else {
+    switch (action.password.type) {
+      case 'PASSWORD_INPUT':
+        return { 
+          email: {value: state.email.value, isValid: state.email.isValid},
+          password: { value: action.password.value, isValid: action.password.value.trim().length > 6},
+        }
+      case 'PASSWORD_BLUR':
+        return { 
+          email: {value: state.email.value, isValid: state.email.isValid},
+          password: {value: state.password.value, isValid: state.password.value.trim().length > 6},
+        }
+      default:
+        return { 
+          email: {value: state.email.value, isValid: state.email.isValid},
+          password: {value: '', isValid: false},
+        }
+    }
   }
-  if (action.type === 'INPUT_BLUR') {
-    return {value: state.value, isValid: state.value.includes('@') }
-  }
-  return {value: '', isValid: false }
 };
 
-const passwordReducer = (state, action) => {
-  switch (action.type) {
-    case 'PASSWORD_INPUT':
-      return {value: action.value, isValid: action.value.trim().length > 6}
-    case 'PASSWORD_BLUR':
-      return {value: state.value, isValid: state.value.trim().length > 6}
-    default:
-      return {value: '', isValid: false}
-  }
-};
+const initialState = {
+  email: {value: '', isValid: null},
+  password: {value: '', isValid: null}
+}
 
 const Login = () => {
   const [formIsValid, setFormIsValid] = useState(false);
-  const [emailState, dispatchEmail] = useReducer(emailReducer, {value: '', isValid: null} );
-  const [passwordState, dispatchPassword] = useReducer(passwordReducer, {value: '', isValid: null});
-  const {isValid: emaiIsValid} = emailState;
-  const {isValid: passwordIsValid} = passwordState;
-  const cxt = useContext(AuthContext);
+  const [state, dispatchState] = useReducer(stateReducer, initialState );
+ //  const [passwordState, dispatchPassword] = useReducer(passwordReducer, {value: '', isValid: null});
+  const {isValid: emaiIsValid} = state.email;
+  const {isValid: passwordIsValid} = state.password;
+
+  const cxt = useContext(CoffeeContext);
 
   useEffect(() => {
     const identifier = setTimeout(()=> {
@@ -48,24 +72,24 @@ const Login = () => {
   }, [emaiIsValid, passwordIsValid])
 
   const emailChangeHandler = (event) => {
-    dispatchEmail({type: 'USER_INPUT', value: event.target.value });
+    dispatchState({ email: {type: 'USER_INPUT', value: event.target.value }});
   };
 
   const passwordChangeHandler = (event) => {
-    dispatchPassword({type: 'PASSWORD_INPUT', value: event.target.value});
+    dispatchState({ password: {type: 'PASSWORD_INPUT', value: event.target.value}});    
   };
 
   const validateEmailHandler = () => {
-    dispatchEmail({type: 'INPUT_BLUR'});
+    dispatchState({ email: {type: 'INPUT_BLUR'}});    
   };
 
   const validatePasswordHandler = () => {
-    dispatchPassword({type: 'PASSWORD_BLUR'});
+    dispatchState({ password: {type: 'PASSWORD_BLUR'}});    
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    cxt.logInHandler(emailState.value, passwordState.value);
+    cxt.authState.logInHandler(state.email.value, state.password.value);
   };
 
   return (
@@ -77,7 +101,7 @@ const Login = () => {
           label='E-mail'
           id='email'
           valid={emaiIsValid}
-          value={emailState.value}
+          value={state.email.value}
           onChange={emailChangeHandler}
           onBlur={validateEmailHandler}
         ></Input>
@@ -87,7 +111,7 @@ const Login = () => {
           label='Password'
           id='password'
           valid={passwordIsValid}
-          value={passwordState.value}
+          value={state.password.value}
           onChange={passwordChangeHandler}
           onBlur={validatePasswordHandler}
         >

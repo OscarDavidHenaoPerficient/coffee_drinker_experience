@@ -1,32 +1,40 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Header from './components/Layout/Header';
 import CoffeeCards from './components/CoffeeCards/CoffeeCards';
-import {CoffeeContextProvider} from './store/coffee-context';
+import CoffeeContext, {CoffeeContextProvider} from './store/coffee-context';
 import Login from './components/Users/Login';
 // import CoffeeContext from './store/coffee-context';
-import AuthContext, { AuthContextProvider } from './store/auth-context';
+// import AuthContext, { AuthContextProvider } from './store/auth-context';
 
 function App() {
-  const {isLoggedIn, logInSetter} = useContext(AuthContext);
+  // const {isLoggedIn} = useContext(CoffeeContext);
+  const cxt = useContext(CoffeeContext);
   
+  const [logIn, setLogIn] = useState(false);
+
+  console.log('is looged in app', cxt.authState.isLoggedIn);
   useEffect(() => {
+    console.log(cxt.authState.isLoggedIn);
+    // setLogIn(true)
     const loggedIn = localStorage.getItem('userLogged');
     if (loggedIn === 'true') {
-      logInSetter(true)
+      cxt.authState.logInSetter(true)
+      setLogIn(true)
     }
-    console.log('is logged: ', isLoggedIn);
-  }, [isLoggedIn, logInSetter])
+    console.log('is logged: ', cxt.authState.isLoggedIn);
+  }, [cxt.authState])
 
   return (
-    <AuthContextProvider>
-      <CoffeeContextProvider>
-        <Header></Header>
-        <main>
-          {/* {!isLoggedIn &&  <Login />} */}
-          {isLoggedIn ? <CoffeeCards /> : <Login />}
-        </main>
-      </CoffeeContextProvider>
-    </AuthContextProvider>
+    <CoffeeContextProvider>
+      <Header></Header>
+      <main>
+        <p>{cxt.authState.isLoggedIn}</p>
+        {/* {!isLoggedIn &&  <Login />} */}
+        {/* {!logIn && <CoffeeCards />} */}
+        {!logIn && <Login />}
+        {/* <CoffeeCards /> */}
+      </main>
+    </CoffeeContextProvider>
   );
 }
 

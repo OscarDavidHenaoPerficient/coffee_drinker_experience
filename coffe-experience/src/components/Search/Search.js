@@ -23,8 +23,8 @@ const Search = () => {
   const cxt = useContext(CoffeeContext);  
 
   const onClickhandler = (event) => {
-    cxt.coffeeSelectionHandler(event.target.value);
-    console.log(cxt.coffeeSelectedData);
+    cxt.coffeeState.coffeeSelectionHandler(event.target.value);
+    console.log(cxt.coffeeState.coffeeSelectedData);
   }
 
   return (
