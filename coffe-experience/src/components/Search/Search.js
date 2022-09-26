@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import classes from './Search.module.css';
-import CoffeeContext from '../../store/coffee-context';
+import AppContext from '../../store/index';
 
 const Search = () => {
   const coffeeList = [
@@ -20,18 +20,23 @@ const Search = () => {
     'Ristretto',
     'Flat White'
   ];
-  const cxt = useContext(CoffeeContext);  
+  const {coffeeSelectionHandler} = useContext(AppContext);  
 
   const onClickhandler = (event) => {
-    cxt.coffeeState.coffeeSelectionHandler(event.target.value);
-    console.log(cxt.coffeeState.coffeeSelectedData);
+    coffeeSelectionHandler(event.target.value);
+    // console.log(cxt.coffeeState.coffeeSelectedData);
   }
 
   return (
     <div className={classes.control}>
       <label>Escoge tu café favorito: </label>
       <select data-testid='selection_drawer' onChange={onClickhandler}  >
-        {coffeeList.map((item) => <option  data-testid={item} key={item} value={item}>{item}</option>)}
+        {coffeeList.map((item) => 
+          <option  
+            data-testid={item} 
+            key={item} 
+            value={item}
+          >{item}</option>)}
       </select>
     </div>
   )

@@ -1,7 +1,7 @@
 import {render, screen} from '@testing-library/react';
 import CoffeeCards from './CoffeeCards';
 import '@testing-library/jest-dom';
-import CoffeeContext from '../store/coffee-context';
+import AppContext from '../store/coffee-context';
 
 test('show default value', () => {
   render(<CoffeeCards/>);
@@ -11,7 +11,7 @@ test('show default value', () => {
 const customRender = (ui, providerProps) => {
   
   return render(
-    <CoffeeContext.Provider value={providerProps}>{ui}</CoffeeContext.Provider>
+    <AppContext.Provider value={providerProps}>{ui}</AppContext.Provider>
   )
 };
 

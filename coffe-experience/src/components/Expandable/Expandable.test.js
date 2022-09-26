@@ -2,18 +2,18 @@ import React, {useContext} from 'react';
 import Expandable from './Expandable';
 import '@testing-library/jest-dom';
 import {fireEvent, render, screen} from '@testing-library/react';
-import CoffeeContext, {CoffeeContextProvider} from '../store/coffee-context';
+import AppContext, {AppContextProvider} from '../store/coffee-context';
 import userEvent from '@testing-library/user-event';
 
 const CustomTest = () => {
-  // const cxt = useContext(CoffeeContext);
+  // const cxt = useContext(AppContext);
   
   return (<Expandable />);
 };
 
 const customRender  = (ui, {providerProps, ...renderOptions}) => {
   return render(
-    <CoffeeContext.Provider value={providerProps}>{ui}</CoffeeContext.Provider>,
+    <AppContext.Provider value={providerProps}>{ui}</AppContext.Provider>,
     renderOptions
   )
 }

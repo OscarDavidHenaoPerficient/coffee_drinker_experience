@@ -1,40 +1,39 @@
-import React, {useState, useContext, Fragment} from "react";
+import React, {useState, Fragment} from "react";
 import classes from './Expandable.module.css';
-import CoffeeContext from "../../store/coffee-context";
+import AppContext from '../../store/index';
+import {useStore} from '../../store/app-context';
 import Images from './Images';
 import { getImage } from "../../assests/coffeeImages/imagesEnums";
 import {motion} from 'framer-motion';
 
 const Expandable = () => {
   const [openDescription, setOpenDescription] = useState(false);
-  const cxt = useContext(CoffeeContext);
+  const {state: {coffeeState: {coffeeSelectedData}}} = useStore(AppContext);
 
   const closeHandler = () => {
-    setOpenDescription(false)
-    // cxt.openDescriptionHandler(false)
+    setOpenDescription(false);
   };
   
   const openHandler = () => {
-    setOpenDescription(true)
-    // cxt.openDescriptionHandler(true)
-    
+    setOpenDescription(true);
   };
 
   return (
     <Fragment>
       <div className={classes.expandable}>
-        <Images source={getImage(cxt.coffeeState.coffeeSelected)} alt='coffeeDelight' />
+        <Images source={getImage(coffeeSelectedData.title)} alt='coffeeDelight' />
         <div className={classes.expandableTitle}>
-          <h1>{cxt.coffeeState.coffeeSelectedData.title}</h1>
-          {cxt.coffeeState.coffeeSelected ? openDescription ? <button onClick={closeHandler}>Close</button> : <button onClick={openHandler}>Details</button> : null}
+          <h1>{coffeeSelectedData.title}</h1>
+          {coffeeSelectedData ? openDescription ? <button onClick={closeHandler}>Close</button> : <button onClick={openHandler}>Details</button> : null}
         </div>
       </div>
       <motion.div layout transition={{layout: {duration: 1}}} className={classes.drawer} >
       {openDescription &&  
         (<motion.div className={classes.expandPara} layout transition={{layout: {duration: 1}}}> 
-          <p data-testid='description'>{cxt.coffeeState.coffeeSelectedData.description}</p>
+          <p data-testid='description'>{coffeeSelectedData.description}</p>
         </motion.div>
-        )}
+        )
+      }
       </motion.div>
     </Fragment>
   )
