@@ -30,3 +30,43 @@
   object-fit: cover;
   transform: rotateZ(-5deg) translateY(-4rem) translateX(-1rem);
 }
+
+.nav ul {
+  list-style: none;
+  margin-right: 0.5rem;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav li {
+  margin-left: 1.5rem;
+  font-size: 1.25rem;
+  color: white;
+  font-size: 20px;
+  
+}
+
+.nav a {
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  cursor: auto;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.nav a:hover,
+.nav a:active,
+.nav a.active {
+  color: #e6fcfc;
+  font-size: 23px;
+  cursor: auto;
+}
+
+a {
+  font-size: 20px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: white;
+  text-decoration: none;
+  cursor: auto;
+}

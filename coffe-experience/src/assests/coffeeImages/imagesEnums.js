@@ -14,6 +14,7 @@ import coldBrew from './cold brew.png';
 import ristretto from './ristretto.png';
 import vienes from './vienes.png';
 import flatWhite from './flat white.png';
+import spilled from './spilled.webp';
 
 export const getImage = (selected) => {
   switch (selected) {
@@ -45,6 +46,8 @@ export const getImage = (selected) => {
       return vienes;
     case 'Flat White':
       return flatWhite;
+    case 'spilled':
+      return spilled;
     default:
     return defaultImage;;
   }

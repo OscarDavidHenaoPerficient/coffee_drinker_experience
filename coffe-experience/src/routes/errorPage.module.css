@@ -1,0 +1,19 @@
+.errorContainer {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  background-color: antiquewhite;
+  border-radius: 50px;
+  position: relative;
+  margin: 1.5rem;
+  margin-top: -25rem;
+}
+
+.errorContainer h1,
+.errorContainer h2 {
+  justify-content: center;
+  display: flex;
+}
+

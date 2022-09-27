@@ -1,0 +1,20 @@
+.container {
+  /* width: 100%; */
+  margin:auto;
+  margin-top: -25rem;
+  display: flex;
+  justify-content: center;
+  height: 90%;
+  position: relative;
+}
+
+.welcome {
+  width: 70%;
+  background-color: antiquewhite;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  border-radius: 20px;
+  padding: 1rem;
+  position: relative
+}
