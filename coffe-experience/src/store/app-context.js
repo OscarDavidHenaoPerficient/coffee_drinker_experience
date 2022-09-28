@@ -26,7 +26,8 @@ export const AppContextProvider = (props) => {
   };
 
   const logInHandler =  (email, password) => {
-    authRequest(email, password);
+    // console.log('in log in handler: ', email );
+    authRequest(email, password, dispatch);
   };
 
   const coffeeSelectionHandler = (value) => {

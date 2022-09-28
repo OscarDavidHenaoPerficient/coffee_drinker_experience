@@ -24,7 +24,7 @@ const Expandable = () => {
         <Images source={getImage(coffeeSelectedData.title)} alt='coffeeDelight' />
         <div className={classes.expandableTitle}>
           <h1>{coffeeSelectedData.title}</h1>
-          {coffeeSelectedData ? openDescription ? <button onClick={closeHandler}>Close</button> : <button onClick={openHandler}>Details</button> : null}
+          {coffeeSelectedData.description ? openDescription ? <button onClick={closeHandler}>Close</button> : <button onClick={openHandler}>Details</button> : null}
         </div>
       </div>
       <motion.div layout transition={{layout: {duration: 1}}} className={classes.drawer} >

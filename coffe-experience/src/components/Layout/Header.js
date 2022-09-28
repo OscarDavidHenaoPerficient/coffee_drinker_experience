@@ -27,10 +27,9 @@ const Header = () => {
           
         </nav>
         {authState &&
-              
-              <Button >
-                <NavLink to='/login'className={navData => navData.isActive ? classes.active : ''}>Log In</NavLink>
-              </Button>
+          <Button >
+            <NavLink to='/login' className={navData => navData.isActive ? classes.active : ''}>Log In</NavLink>
+          </Button>
           }
       </header>
       <div className={classes['main-image']}>

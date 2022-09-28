@@ -11,12 +11,11 @@ export const requestHandler = async (dispacth) => {
     dispacth(actions.setCoffeeInitialData(data))
   } catch (error) {
     console.log(error);
+    
   }
 };
 
-export const authRequest = async (email, password) => {
-  console.log('email entered', email);
-  console.log('password entered', password);
+export const authRequest = async (email, password, dispatch) => {
   try {
     const response = await fetch('http://localhost:3000/validUsers')
     if (!response.ok) {
@@ -26,24 +25,24 @@ export const authRequest = async (email, password) => {
     const existingEmail = data.find(user => user.username === email);
     if (existingEmail) {
       if (existingEmail.password === password) {
-        actions.setIsLoggedIn(true);
+        dispatch(actions.setIsLoggedIn(true));
         localStorage.setItem('token', existingEmail.token)
         localStorage.setItem('userLogged', 'true');
-        actions.setIsLoggedIn(true);
       } else {
-        actions.setIsLoggedIn(false);
+        dispatch(actions.setIsLoggedIn(false));
         localStorage.setItem('userLogged', 'false');
-        actions.setIsLoggedIn(false)
+        // actions.setIsLoggedIn(false)
         throw new Error('Wrong password');
+        // actions.setErrorState('Wrong password', 'wrong password')
       }
     } else {
-      actions.setIsLoggedIn(false);
+      dispatch(actions.setIsLoggedIn(false));
       localStorage.setItem('userLogged', 'false');
-      actions.setIsLoggedIn(false)
       throw new Error('User does not exist');
     }
     return await data
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
+    dispatch(actions.setErrorState({ errorType: 'authentication error', message: error.message}));
   }
 };

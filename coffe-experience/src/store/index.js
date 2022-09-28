@@ -10,6 +10,10 @@ const AppContext = React.createContext({
     coffeeData: undefined,
     coffeeSelectedData: undefined
   },
+  errorState: {
+    errorType: undefined,
+    message: undefined
+  },
   dispatch: () => {},
   coffeeSelectedHandler: () => {},
   coffeeSelectionHandler: () => {},

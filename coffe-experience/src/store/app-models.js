@@ -18,10 +18,16 @@ const authenticationInitialState = {
   password:undefined
 };
 
+const errorState = {
+  errorType: undefined,
+  message: undefined
+}
+
 const initialState = Object.freeze(
   {
     coffeeState: selectedCoffee,
     authState: authenticationInitialState,
+    errorState: errorState,
     dispatch: () => {}
 });
 

@@ -4,33 +4,28 @@ import CoffeeCards from './components/CoffeeCards/CoffeeCards';
 import {AppContextProvider, useStore} from './store/app-context';
 import AppContext from './store/index';
 import Login from './components/Users/Login';
-import { setIsLoggedIn } from './store/app-actions';
 import {Route, createBrowserRouter, RouterProvider, Routes, Navigate} from 'react-router-dom'; 
 import Layout from './components/Layout/Layout';
 import ErrorPage from './routes/errorPage';
+import * as actions from './store/app-actions';
 import Welcome from './routes/Welcome';
 
-// const router = createBrowserRouter([
-  
-// ]);
-
 function App() {
-  const {authState: {isLoggedIn}} = useStore(AppContext);
+  // const {authState: {isLoggedIn}} = useStore();
+  const {authState, dispatch} = useStore();
 
   useEffect(() => {
-    console.log(isLoggedIn);
+   //  console.log('cxt', cxt);
     const loggedIn = localStorage.getItem('userLogged');
     if (loggedIn === 'true') {
-      setIsLoggedIn(true)
+      dispatch(actions.setIsLoggedIn(true))
     }
-    console.log('is logged: ', isLoggedIn);
-  }, [isLoggedIn])
+    // console.log('is logged: ', authState);
+  }, [])
 
   return (
     <AppContextProvider>
       <Layout>
-          {/* <Login />
-          <CoffeeCards /> */}
         <Routes>
           <Route path='/' element={<Navigate to='/welcome' />} />
           <Route path='/welcome' element={<Welcome />} />
@@ -38,10 +33,6 @@ function App() {
           <Route path='/coffeeStyles' element={<CoffeeCards />} />
           <Route path='*' element={<ErrorPage/>} />
         </Routes>
-        {/* TODO: build a HOC here */}
-        
-        {/* {isLoggedIn &&  } */}
-        {/* {!isLoggedIn && } */}
       </Layout>
     </AppContextProvider>
   );
