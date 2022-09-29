@@ -23,7 +23,6 @@ const appReducer = (state, action) => {
         coffeeData: state.coffeeData
       }
     case actions.ACTIONS.SET_PASSWORD:
-      // console.log('in password setter', action);
       return {
         ...state,
         authState: {

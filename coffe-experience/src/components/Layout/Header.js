@@ -7,18 +7,24 @@ import { useStore } from '../../store/app-context';
 
 const Header = () => {
   const {state: {authState}} = useStore();
+  console.log('authState', authState);
+
   return (
     <Fragment>
       <header className={classes.header}>
         <h1>Coffee Styles</h1>
         <nav className={classes.nav}>
           <ul>
-            <li>
-              <NavLink to='/coffeeStyles' className={navData => navData.isActive ? classes.active : ''}>Coffee Styles</NavLink>
-            </li>
-            <li>
-              <NavLink to='/preparations' className={navData => navData.isActive ? classes.active : ''}>Preparations</NavLink>
-            </li>
+            {authState.isLoggedIn === true ?
+            <Fragment>
+              <li>
+                <NavLink to='/coffeeStyles' className={navData => navData.isActive ? classes.active : ''}>Coffee Styles</NavLink>
+              </li>
+              <li>
+                <NavLink to='/preparations' className={navData => navData.isActive ? classes.active : ''}>Preparations</NavLink>
+              </li>
+            </Fragment>
+            : null}
             <li>
               <NavLink to='shop'className={navData => navData.isActive ? classes.active : ''}>Shop</NavLink>
             </li>
@@ -26,11 +32,11 @@ const Header = () => {
           </ul>
           
         </nav>
-        {authState &&
+        {authState.isLoggedIn === true ? null :
           <Button >
             <NavLink to='/login' className={navData => navData.isActive ? classes.active : ''}>Log In</NavLink>
           </Button>
-          }
+        }
       </header>
       <div className={classes['main-image']}>
         <img data-testid='coffeeBeans' src={coffeBeans} alt="coffee Beans" />

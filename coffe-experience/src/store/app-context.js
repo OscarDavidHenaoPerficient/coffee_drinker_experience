@@ -1,6 +1,6 @@
-import React, {useEffect, useReducer, useContext, useMemo} from "react";
+import React, {useEffect, useReducer, useContext, useMemo, useCallback} from "react";
 import PropTypes from 'prop-types';
-import { authRequest, requestHandler } from "../fetchers/fetchers";
+import { useFetch, useAuth } from "../fetchers/fetchers";
 import initialState from './app-models';
 import AppContext from './index'
 import * as actions from './app-actions';
@@ -8,12 +8,50 @@ import appReducer from "./app-reducer";
 
 export const useStore = () => useContext(AppContext);
 
-export const AppContextProvider = (props) => {
-  const [appState, dispatch] = useReducer(appReducer, initialState)
+const localStorageSetter = (field, value) => {
+  localStorage.setItem(field, value);
+};
 
-  useEffect(() => {
-    requestHandler(dispatch);
+export const AppContextProvider = (props) => {
+  const [appState, dispatch] = useReducer(appReducer, initialState);
+  const {error, sendRequest} = useFetch();
+  const {error: errorAuth, requestAuth} = useAuth();
+  
+  const dispatchDataRequest = useCallback((data) => {
+    if (error) {
+      dispatch(actions.setErrorState({type: 'Error at fetching', message: error.message})) 
+      dispatch(actions.setCoffeeInitialData({}))
+    } else if (data) {
+      dispatch(actions.setCoffeeInitialData(data))
+    } 
+  }, [error]);
+
+  const dispatchDataAuth = useCallback((data, email, password) => {
+    const existingEmail = data.find(user => user.username === email);
+    if (existingEmail) {
+      if(existingEmail.password === password) {
+        dispatch(actions.setIsLoggedIn(true));
+        localStorageSetter('userLogged', 'true');
+        localStorageSetter('token', existingEmail.token);
+      } else {
+        dispatch(actions.setIsLoggedIn(false));
+        localStorageSetter('userLogged', 'false');
+        dispatch(actions.setErrorState({errorType: 'Authentication error', message: 'Your E-mail or password are not correct, please enter values again'}))
+        throw new Error('Wrong password');
+      }
+    } else {
+      dispatch(actions.setIsLoggedIn(false))
+      localStorageSetter('userLogged', 'false');
+      dispatch(actions.setErrorState({errorType: 'Authentication error', message: 'User does not exist, please subscribe!'}));
+      throw new Error('User does not exists.');
+    }
   }, []);
+
+  useEffect(() => { 
+    sendRequest(dispatchDataRequest)
+  }, [dispatchDataRequest, sendRequest]);
+  
+  
 
   /**
    * Change selected coffee
@@ -25,9 +63,9 @@ export const AppContextProvider = (props) => {
     // actions.setSelectedCoffee(value);
   };
 
-  const logInHandler =  (email, password) => {
-    // console.log('in log in handler: ', email );
-    authRequest(email, password, dispatch);
+  const logInHandler = async (email, password) => {
+    requestAuth(email, password, dispatchDataAuth);
+    if (errorAuth) dispatch(actions.setErrorState({errorType: 'Authentication error', message: errorAuth.message}))
   };
 
   const coffeeSelectionHandler = (value) => {
