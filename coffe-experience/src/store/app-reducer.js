@@ -48,6 +48,11 @@ const appReducer = (state, action) => {
           message: action.payload.message
         }
       }
+    case actions.ACTIONS.SET_PREPARATIONS:
+      return {
+        ...state,
+        preparations: action.payload
+      }
     default:
       return;
   }

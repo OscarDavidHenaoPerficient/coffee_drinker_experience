@@ -15,8 +15,12 @@ import ristretto from './ristretto.png';
 import vienes from './vienes.png';
 import flatWhite from './flat white.png';
 import spilled from './spilled.webp';
+import prensa from './prensa.jpeg';
+import moka from './moka.jpeg';
+import chemex from './chemex.jpeg'
 
-export const getImage = (selected) => {
+export const getImage = (selection) => {
+  const selected = selection.toLowerCase();
   switch (selected) {
     case 'Espresso':
       return espresso;
@@ -48,8 +52,14 @@ export const getImage = (selected) => {
       return flatWhite;
     case 'spilled':
       return spilled;
+    case 'chemex':
+      return chemex;
+    case 'moka':
+      return moka;
+    case 'prensa':
+      return prensa;
     default:
-    return defaultImage;;
+      return defaultImage;;
   }
 };
 

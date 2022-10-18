@@ -1,0 +1,41 @@
+.cardContainer {
+  position:relative;
+  margin: auto;
+  margin-top: -25rem;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.card_animation-enter{
+  opacity: 0;
+  transform: translateX(-100%);
+}
+.card_animation-enter-active {
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+.card_animation-exit{
+  opacity: 1;
+  transform: translateX(0%);
+}
+.card_animation-exit-active {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.card_animation-enter-active{
+  transition: opacity 500ms, transform 500ms;
+}
+.card_animation-exit-active{
+  transition: opacity 200ms, transform 200ms;
+}
+
+/* .card_animation-exit-active{
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.5;
+  transform: translateX(-48px);
+} */

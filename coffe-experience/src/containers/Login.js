@@ -54,9 +54,13 @@ const Login = () => {
     if (authState.isLoggedIn === true) navigate(from, {replace: true});
   };
 
+  const errorHandler = () => {
+    dispatch(actions.setErrorState({ errorType: undefined, message:undefined}))
+  }
+
   return (
     <Fragment>
-      {errorState.errorType && <ErrorModal error={errorState}  />}
+      {errorState.errorType && <ErrorModal onClick={errorHandler} error={errorState}  />}
       <Card >
         {authState.isLoggedIn === true ? 
         <p> Loading...</p> :  

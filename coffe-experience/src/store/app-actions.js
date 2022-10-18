@@ -4,7 +4,8 @@ export const ACTIONS = Object.freeze({
   SET_PASSWORD: 'SET_PASSWORD',
   SET_EMAIL: 'SET_EMAIL',
   SET_IS_LOGGED_IN: 'SET_IS_LOGGED_IN',
-  SET_ERROR: 'SET_ERROR'
+  SET_ERROR: 'SET_ERROR',
+  SET_PREPARATIONS: 'SET_PREPARATIONS'
 })
 
 export const setSelectedCoffee = (payload) => ({
@@ -34,5 +35,10 @@ export const setIsLoggedIn = (payload) => ({
 
 export const setErrorState = (payload) => ({
   type: ACTIONS.SET_ERROR,
+  payload
+});
+
+export const setPreparations = (payload) => ({
+  type: ACTIONS.SET_PREPARATIONS,
   payload
 });

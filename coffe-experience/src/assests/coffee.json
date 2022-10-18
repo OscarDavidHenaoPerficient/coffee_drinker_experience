@@ -142,5 +142,25 @@
       "password": "000000*/",
       "token": "001"
     }
+  ],
+  "preparations": [
+    {
+      "id": "p1",
+      "title": "Prensa Francesa",
+      "description": "Método de preparación que garantiza una extracción de café con más cuerpo y textura. Para este tipo de preparación usar una molienda de café gruesa",
+      "use": "agregar cafe molido al gusto y vertir agua caliente, revolver y dejar reporsar por 5 minutos." 
+    },
+    {
+      "id": "p2",
+      "title": "Moka",
+      "description": "La Cafetera Moka negra con un diseño sofisticado, elegante y práctico, llega para satisfacer las necesidades de los amantes del Café. Con un tono mas amargo similar al espresso, llega a suplir la necesidad de cafe fuerte.",
+      "use": "precalentar el agua, cuando este hervida vertirla dentro de la base del mocka y luego agregar el cafe molido en el filtro, tapar y esperar hasta que realice ebullición."
+    },
+    {
+      "id": "p3",
+      "title": "Chemex",
+      "description": "es uno de los métodos más utilizados por los baristas para preparar cafés más solubles, con menos residuos sólidos, sabores y aromas más claros. Es un método de goteo, lo cual significa que el agua pasa a través de una capa de café y un filtro normalmente hecho de papel.",
+      "use": "ubicar filtro de papel en boquilla y luego purgar el filtro pasandola por agua caliente, luego agregar cafe deseado para despues verter el agua caliente."
+    }
   ]
 }

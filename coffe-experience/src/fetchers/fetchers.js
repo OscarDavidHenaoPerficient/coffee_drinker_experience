@@ -1,7 +1,7 @@
 import {useState, useCallback, useEffect} from 'react';
 import * as actions from '../store/app-actions';
 import {useStore} from '../store/app-context';
-import AppContext from '../store';
+// import AppContext from '../store';
 
 export const useFetch = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -51,10 +51,9 @@ export const useAuth = () => {
 }
 
 export const useRequest = () => {
-  const cxt = useStore(AppContext);
+  const {dispatch} = useStore();
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {(async function () {
-    console.log('run use effect useFetch');
     setIsLoading(true);
     try {
       const response = await fetch('http://localhost:3000/coffee_types');
@@ -62,21 +61,43 @@ export const useRequest = () => {
         throw new Error('Something went wrong!');
       }
       const data = await response.json();
-      console.log('data', data);
-      cxt.dispatch(actions.setCoffeeInitialData(data))
+      dispatch(actions.setCoffeeInitialData(data))
     } catch (error) {
       console.log(error);
-      cxt.dispatch(actions.setErrorState({errorType: 'Error in page', message: error.message}))
+      dispatch(actions.setErrorState({errorType: 'Error in page', message: error.message}))
     }
     setIsLoading(false);
   })()
-  }, [cxt]);
+  }, []);
   return {
     isLoading,
   }
 }
 
-// all fetchers
+export const usePreparations = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null)
+  
+  const preparationsSetter = useCallback(async (dispatchDataPreparations) => {
+    setIsLoading(true);
+    setError(null)
+    try {
+      const response = await fetch('http://localhost:3000/preparations');
+      if (!response.ok) {
+        throw new Error('Something went wrong at preparations')
+      }
+      const data = await response.json();
+      console.log('data preparations: ', data);
+      dispatchDataPreparations(data)
+    } catch (error) {
+      setError(error)
+    }
+    setIsLoading(false)
+  }, [])
+  return {preparationsSetter, isLoading, error}
+}
+
+// old fetchers
 export const requestHandler = async (dispatch) => {
   try {
     const response = await fetch('http://localhost:3000/coffee_types');

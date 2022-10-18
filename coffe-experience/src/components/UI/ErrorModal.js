@@ -31,15 +31,11 @@ const ModalOverlay = (props) => {
 
 const ErrorModal = (props) => {
   const {errorType, message } = props.error;
-  const {dispatch} = useStore(); 
 
-  const errorHandler = () => {
-    dispatch(actions.setErrorState({ errorType: undefined, message:undefined}))
-  }
   return (
     <Fragment>
-      {ReactDOM.createPortal(<Backdrop onClick={errorHandler}/>, document.getElementById('backdrop_root'))}
-      {ReactDOM.createPortal(<ModalOverlay title={errorType} message={message} onClick={errorHandler} />, document.getElementById('overlay_root'))}
+      {ReactDOM.createPortal(<Backdrop onClick={props.onClick}/>, document.getElementById('backdrop_root'))}
+      {ReactDOM.createPortal(<ModalOverlay title={errorType} message={message} onClick={props.onClick} />, document.getElementById('overlay_root'))}
     </Fragment>
   );
 }

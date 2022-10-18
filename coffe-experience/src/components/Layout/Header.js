@@ -7,7 +7,6 @@ import { useStore } from '../../store/app-context';
 
 const Header = () => {
   const {state: {authState}} = useStore();
-  console.log('authState', authState);
 
   return (
     <Fragment>

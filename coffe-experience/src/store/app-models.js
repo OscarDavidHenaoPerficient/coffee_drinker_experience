@@ -27,6 +27,7 @@ const initialState = Object.freeze(
   {
     coffeeState: selectedCoffee,
     authState: authenticationInitialState,
+    preparations: [],
     errorState: errorState,
     dispatch: () => {}
 });

@@ -1,6 +1,6 @@
 import React, {useEffect, useReducer, useContext, useMemo, useCallback} from "react";
 import PropTypes from 'prop-types';
-import { useFetch, useAuth } from "../fetchers/fetchers";
+import { useFetch, useAuth, usePreparations } from "../fetchers/fetchers";
 import initialState from './app-models';
 import AppContext from './index'
 import * as actions from './app-actions';
@@ -16,7 +16,8 @@ export const AppContextProvider = (props) => {
   const [appState, dispatch] = useReducer(appReducer, initialState);
   const {error, sendRequest} = useFetch();
   const {error: errorAuth, requestAuth} = useAuth();
-  
+  const {error: errorPreparations, preparationsSetter} = usePreparations();
+
   const dispatchDataRequest = useCallback((data) => {
     if (error) {
       dispatch(actions.setErrorState({type: 'Error at fetching', message: error.message})) 
@@ -25,6 +26,15 @@ export const AppContextProvider = (props) => {
       dispatch(actions.setCoffeeInitialData(data))
     } 
   }, [error]);
+
+  const dispatchDataPreparations = useCallback((data)=> {
+    if (errorPreparations) {
+      dispatch(actions.setErrorState({type: 'Error at fetching preparations', message: errorPreparations.message})) 
+      dispatch(actions.setPreparations([]))
+    } else if (data) {
+      dispatch(actions.setPreparations(data))
+    }
+  }, [errorPreparations]);
 
   const dispatchDataAuth = useCallback((data, email, password) => {
     const existingEmail = data.find(user => user.username === email);
@@ -50,8 +60,6 @@ export const AppContextProvider = (props) => {
   useEffect(() => { 
     sendRequest(dispatchDataRequest)
   }, [dispatchDataRequest, sendRequest]);
-  
-  
 
   /**
    * Change selected coffee
@@ -71,6 +79,11 @@ export const AppContextProvider = (props) => {
   const coffeeSelectionHandler = (value) => {
     dispatch(actions.setSelectedCoffee(value))
   };
+  
+  const preparationsRequest = () => {
+    preparationsSetter(dispatchDataPreparations)
+    // dispatch()
+  };
 
   const value = useMemo(() => ({
     state: {
@@ -79,6 +92,7 @@ export const AppContextProvider = (props) => {
     dispatch,
     coffeeSelectedHandler,
     coffeeSelectionHandler,
+    preparationsRequest,
     logInHandler
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [appState]);

@@ -7,11 +7,12 @@ import Layout from './components/Layout/Layout';
 import ErrorPage from './routes/errorPage';
 import * as actions from './store/app-actions';
 import Welcome from './routes/Welcome';
-import {useFetch} from './fetchers/fetchers';
+import {useFetch, useRequest} from './fetchers/fetchers';
+import PreparationsCard from './containers/PreparationsCard/PreparationsCard'
 
 function App() {
   const { dispatch} = useStore();
-  const {isLoading} = useFetch();
+  const {isLoading} = useRequest();
 
   useEffect(() => {
     const loggedIn = localStorage.getItem('userLogged');
@@ -28,6 +29,7 @@ function App() {
           <Route path='/welcome' element={<Welcome />} />
           <Route path='/login' element={<Login />} />
           <Route path='/coffeeStyles' element={<CoffeeCards loading={isLoading}/>} />
+          <Route path='/preparations' element={<PreparationsCard />} />
           <Route path='*' element={<ErrorPage/>} />
         </Routes>
       </Layout>

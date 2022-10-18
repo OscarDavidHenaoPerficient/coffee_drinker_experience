@@ -10,6 +10,7 @@ const AppContext = React.createContext({
     coffeeData: undefined,
     coffeeSelectedData: undefined
   },
+  preparations: undefined,
   errorState: {
     errorType: undefined,
     message: undefined
@@ -17,6 +18,7 @@ const AppContext = React.createContext({
   dispatch: () => {},
   coffeeSelectedHandler: () => {},
   coffeeSelectionHandler: () => {},
+  preparationsRequest: () => {},
   logInHandler: () => {},
 });
 

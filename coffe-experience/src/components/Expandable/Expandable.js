@@ -5,6 +5,7 @@ import { getImage } from "../../assests/coffeeImages/imagesEnums";
 
 const Expandable = (props) => {
   const [openDescription, setOpenDescription] = useState(false);
+  const image = props.title.split(' ')[0]
 
   const closeHandler = () => {
     setOpenDescription(false);
@@ -17,7 +18,7 @@ const Expandable = (props) => {
   return (
     <Fragment>
       <div className={classes.expandable}>
-        <Images source={getImage(props.title)} alt='coffeeDelight' />
+        <Images source={getImage(image)} alt='coffeeDelight' />
         <div className={classes.expandableTitle}>
           <h1>{props.title}</h1>
           {props.description ? openDescription ? <button onClick={closeHandler}>Close</button> : <button onClick={openHandler}>Details</button> : null}
