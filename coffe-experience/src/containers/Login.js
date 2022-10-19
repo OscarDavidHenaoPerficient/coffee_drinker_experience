@@ -5,7 +5,7 @@ import Button from '../components/Users/Button';
 import Input from '../components/Users/Input';
 import * as actions from '../store/app-actions';
 import { useStore } from '../store/app-context';
-import ErrorModal from '../components/UI/ErrorModal';
+import ErrorModal from '../components/UI/ErrorsComponents/ErrorModal';
 import {
   useNavigate,
   useLocation,

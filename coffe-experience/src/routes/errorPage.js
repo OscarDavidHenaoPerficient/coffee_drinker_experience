@@ -1,6 +1,6 @@
 import React from 'react';
 import { getImage } from '../assests/coffeeImages/imagesEnums';
-import Images from '../components/Expandable/Images';
+import Images from '../components/UI/Images';
 import classes from './errorPage.module.css';
 
 const ErrorPage = () => {

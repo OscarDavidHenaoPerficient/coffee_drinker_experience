@@ -19,6 +19,7 @@ const AppContext = React.createContext({
   coffeeSelectedHandler: () => {},
   coffeeSelectionHandler: () => {},
   preparationsRequest: () => {},
+  errorSetter: () => {},
   logInHandler: () => {},
 });
 

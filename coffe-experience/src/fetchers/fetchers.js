@@ -63,7 +63,6 @@ export const useRequest = () => {
       const data = await response.json();
       dispatch(actions.setCoffeeInitialData(data))
     } catch (error) {
-      console.log(error);
       dispatch(actions.setErrorState({errorType: 'Error in page', message: error.message}))
     }
     setIsLoading(false);
@@ -76,25 +75,24 @@ export const useRequest = () => {
 
 export const usePreparations = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null)
+  const [errorPreparations, setErrorPreparations] = useState(null)
   
   const preparationsSetter = useCallback(async (dispatchDataPreparations) => {
     setIsLoading(true);
-    setError(null)
+    setErrorPreparations(null)
     try {
       const response = await fetch('http://localhost:3000/preparations');
       if (!response.ok) {
-        throw new Error('Something went wrong at preparations')
+        throw new Error('Something went wrong at preparations');
       }
       const data = await response.json();
-      console.log('data preparations: ', data);
       dispatchDataPreparations(data)
     } catch (error) {
-      setError(error)
+      setErrorPreparations(error)
     }
     setIsLoading(false)
   }, [])
-  return {preparationsSetter, isLoading, error}
+  return {preparationsSetter, isLoading, errorPreparations}
 }
 
 // old fetchers

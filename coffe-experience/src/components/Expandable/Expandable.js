@@ -1,6 +1,6 @@
 import React, {useState, Fragment} from "react";
 import classes from './Expandable.module.css';
-import Images from './Images';
+import Images from '../UI/Images';
 import { getImage } from "../../assests/coffeeImages/imagesEnums";
 
 const Expandable = (props) => {

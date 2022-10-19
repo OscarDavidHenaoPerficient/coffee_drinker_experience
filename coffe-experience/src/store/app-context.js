@@ -16,7 +16,7 @@ export const AppContextProvider = (props) => {
   const [appState, dispatch] = useReducer(appReducer, initialState);
   const {error, sendRequest} = useFetch();
   const {error: errorAuth, requestAuth} = useAuth();
-  const {error: errorPreparations, preparationsSetter} = usePreparations();
+  const {errorPreparations, preparationsSetter} = usePreparations();
 
   const dispatchDataRequest = useCallback((data) => {
     if (error) {
@@ -82,8 +82,16 @@ export const AppContextProvider = (props) => {
   
   const preparationsRequest = () => {
     preparationsSetter(dispatchDataPreparations)
-    // dispatch()
+    //console.log(errorPreparations);
+    // if (errorPreparations) {
+    //   dispatch(actions.setErrorState({errorType: 'Preparations error', message: errorPreparations.message}))
+    //   return errorPreparations
+    // }
   };
+  
+  const errorSetter = (type, message) => {
+    dispatch(actions.setErrorState({errorType: type, message: message}))
+  }
 
   const value = useMemo(() => ({
     state: {
@@ -93,7 +101,8 @@ export const AppContextProvider = (props) => {
     coffeeSelectedHandler,
     coffeeSelectionHandler,
     preparationsRequest,
-    logInHandler
+    logInHandler,
+    errorSetter,
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }), [appState]);
 
