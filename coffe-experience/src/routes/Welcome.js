@@ -4,8 +4,8 @@ import classes from './Welcome.module.css';
 const Welcome = () => {
   return (
     <div className={classes.container}>
-      <div className={classes.welcome}>
-        <p>hello welcome to coffee Styles</p>
+      <div id='welcome_container' className={classes.welcome}>
+        <p id='welcome_message'>hello welcome to coffee Styles</p>
       </div>
     </div>
   );

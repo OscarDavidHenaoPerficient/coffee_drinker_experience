@@ -5,6 +5,14 @@
   padding: 2rem;
 }
 
+.title {
+  font-size: 24px;
+  color:rgb(66, 34, 38);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  justify-content: center;
+  display: flex;
+}
+
 .control {
   margin: 1rem 0;
   display: flex;

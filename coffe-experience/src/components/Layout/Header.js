@@ -11,7 +11,7 @@ const Header = () => {
   return (
     <Fragment>
       <header className={classes.header}>
-        <h1>Coffee Styles</h1>
+        <h1 id='title_website' >Coffee Styles</h1>
         <nav className={classes.nav}>
           <ul>
             {authState.isLoggedIn === true ?
@@ -20,7 +20,7 @@ const Header = () => {
                 <NavLink to='/coffeeStyles' className={navData => navData.isActive ? classes.active : ''}>Coffee Styles</NavLink>
               </li>
               <li>
-                <NavLink to='/preparations' className={navData => navData.isActive ? classes.active : ''}>Preparations</NavLink>
+                <NavLink id='preparations_link' to='/preparations' className={navData => navData.isActive ? classes.active : ''}>Preparations</NavLink>
               </li>
             </Fragment>
             : null}
@@ -32,7 +32,7 @@ const Header = () => {
           
         </nav>
         {authState.isLoggedIn === true ? null :
-          <Button >
+          <Button id='login' >
             <NavLink to='/login' className={navData => navData.isActive ? classes.active : ''}>Log In</NavLink>
           </Button>
         }

@@ -16,14 +16,14 @@ const ModalOverlay = (props) => {
 
   return (
     <Card className={classes.modal}>
-      <header className={classes.header}>
-        <h2>{props.title}</h2>
+      <header id='error_type' className={classes.header}>
+        <h2 id='error_type_title'>{props.title}</h2>
       </header>
-      <div className={classes.content}>
-        <p>{props.message}</p>
+      <div id='error_container' className={classes.content}>
+        <p id='error_container_message'>{props.message}</p>
       </div>
       <footer className={classes.actions}>
-        <Button onClick={props.onClick}>Got it!</Button>
+        <Button id='error_submit' onClick={props.onClick}>Got it!</Button>
       </footer>
     </Card>
   );

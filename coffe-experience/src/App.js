@@ -28,7 +28,7 @@ function App() {
           <Route path='/' element={<Navigate replace to='/welcome' />} />
           <Route path='/welcome' element={<Welcome />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/coffeeStyles' element={<CoffeeCards loading={isLoading}/>} />
+          <Route path='/coffeeStyles' element={<CoffeeCards/>} />
           <Route path='/preparations' element={<PreparationsCard />} />
           <Route path='*' element={<ErrorPage/>} />
         </Routes>

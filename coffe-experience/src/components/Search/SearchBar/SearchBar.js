@@ -76,8 +76,8 @@ export default class SearchBar extends Component {
       return (
         <div className='searchContainer'>
           <h2>{this.props.label}</h2>
-          <input type='search' onChange={this.onChange.bind(this)}></input>
-          <Button onClick={this.onClick.bind(this)} >Buscala Aqui!</Button>
+          <input id='search_bar' type='search' onChange={this.onChange.bind(this)}></input>
+          <Button id='search' onClick={this.onClick.bind(this)} >Buscala Aqui!</Button>
         </div>)
   }
   }

@@ -5,6 +5,10 @@ import initialState from './app-models';
 import AppContext from './index'
 import * as actions from './app-actions';
 import appReducer from "./app-reducer";
+import {
+  useNavigate,
+  useLocation,
+} from "react-router-dom"; 
 
 export const useStore = () => useContext(AppContext);
 
@@ -17,6 +21,10 @@ export const AppContextProvider = (props) => {
   const {error, sendRequest} = useFetch();
   const {error: errorAuth, requestAuth} = useAuth();
   const {errorPreparations, preparationsSetter} = usePreparations();
+  
+  const navigate = useNavigate()
+  const location = useLocation()
+  let from = location.state?.from?.pathname || '/coffeeStyles';
 
   const dispatchDataRequest = useCallback((data) => {
     if (error) {
@@ -43,6 +51,7 @@ export const AppContextProvider = (props) => {
         dispatch(actions.setIsLoggedIn(true));
         localStorageSetter('userLogged', 'true');
         localStorageSetter('token', existingEmail.token);
+        navigate(from, {replace: true});
       } else {
         dispatch(actions.setIsLoggedIn(false));
         localStorageSetter('userLogged', 'false');
@@ -71,7 +80,7 @@ export const AppContextProvider = (props) => {
     // actions.setSelectedCoffee(value);
   };
 
-  const logInHandler = async (email, password) => {
+  const logInHandler = (email, password) => {
     requestAuth(email, password, dispatchDataAuth);
     if (errorAuth) dispatch(actions.setErrorState({errorType: 'Authentication error', message: errorAuth.message}))
   };

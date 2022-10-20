@@ -6,24 +6,17 @@ import Input from '../components/Users/Input';
 import * as actions from '../store/app-actions';
 import { useStore } from '../store/app-context';
 import ErrorModal from '../components/UI/ErrorsComponents/ErrorModal';
-import {
-  useNavigate,
-  useLocation,
-} from "react-router-dom"; 
 
 const Login = () => {
   const [formIsValid, setFormIsValid] = useState(false);
   const {dispatch, state: {authState, errorState}, logInHandler} = useStore();
   const [emailValid, setEmailValid] = useState();
   const [passwordValid, setPasswordValid] = useState();
-  const navigate = useNavigate()
-  const location = useLocation()
-  let from = location.state?.from?.pathname || '/coffeeStyles';
 
   useEffect(() => {
     const identifier = setTimeout(()=> {
       setFormIsValid(passwordValid && emailValid);
-    }, 500)
+    }, 100)
     return () => {
       clearTimeout(identifier);
     }
@@ -50,8 +43,7 @@ const Login = () => {
   const submitHandler = (event) => {
     event.preventDefault();
     logInHandler(authState.email, authState.password);
-    console.log('error State: ', errorState);
-    if (authState.isLoggedIn === true) navigate(from, {replace: true});
+    
   };
 
   const errorHandler = () => {
@@ -62,37 +54,35 @@ const Login = () => {
     <Fragment>
       {errorState.errorType && <ErrorModal onClick={errorHandler} error={errorState}  />}
       <Card >
-        {authState.isLoggedIn === true ? 
-        <p> Loading...</p> :  
-          <form onSubmit={submitHandler}>
-            <Input
-              classes={classes}
-              inputType='email'
-              label='E-mail'
-              id='email'
-              valid={emailValid}
-              value={authState.email}
-              onChange={emailChangeHandler}
-              onBlur={validateEmailHandler}
-            ></Input>
-            <Input
-              classes={classes}
-              inputType='password'
-              label='Password'
-              id='password'
-              valid={passwordValid}
-              value={authState.password}
-              onChange={passwordChangeHandler}
-              onBlur={validatePasswordHandler}
-            >
-            </Input>
-            <div className={classes.actions}>
-              <Button type="submit" className={classes.btn} disabled={!formIsValid}>
-                Login
-              </Button>
-            </div>
-          </form>
-        }
+        <p className={classes.title} id='login_invitation'>Por favor ingrese sus credenciales</p>
+        <form onSubmit={submitHandler} id='login_form'>
+          <Input
+            classes={classes}
+            inputType='email'
+            label='E-mail'
+            id='email'
+            valid={emailValid}
+            value={authState.email}
+            onChange={emailChangeHandler}
+            onBlur={validateEmailHandler}
+          ></Input>
+          <Input
+            classes={classes}
+            inputType='password'
+            label='Password'
+            id='password'
+            valid={passwordValid}
+            value={authState.password}
+            onChange={passwordChangeHandler}
+            onBlur={validatePasswordHandler}
+          >
+          </Input>
+          <div className={classes.actions}>
+            <Button id='login_submit' type="submit" className={classes.btn} disabled={!formIsValid}>
+              Login
+            </Button>
+          </div>
+        </form>
       </Card>
     </Fragment>
   );

@@ -20,7 +20,7 @@ const Expandable = (props) => {
       <div className={classes.expandable}>
         <Images source={getImage(image)} alt='coffeeDelight' />
         <div className={classes.expandableTitle}>
-          <h1>{props.title}</h1>
+          <h1 id='coffee_title'>{props.title}</h1>
           {props.description ? openDescription ? <button onClick={closeHandler}>Close</button> : <button onClick={openHandler}>Details</button> : null}
         </div>
       </div>
